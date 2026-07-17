@@ -27,6 +27,11 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    overflow-x: hidden;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -214,13 +219,13 @@ a {
 }
 
 .nav-container {
-    max-width: 1180px;
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 64px;
+    width: 100%;
 }
 
 .nav-logo {
@@ -937,13 +942,21 @@ a {
     position: relative;
 }
 
+.carousel-wrap {
+    overflow: hidden;
+}
+
 .carousel-stage {
     position: relative;
-    height: 440px;
+    height: 550px;
     perspective: 1400px;
     margin-bottom: 1.8rem;
     touch-action: pan-y;
     cursor: grab;
+}
+
+.carousel-stage {
+    overflow: hidden;
 }
 
 .carousel-stage:active {
@@ -1562,6 +1575,11 @@ a {
         padding: 0 1.25rem;
     }
 
+    .navbar,
+    .scroll-progress {
+        max-width: 768px;
+    }
+
     .nav-container {
         padding: 0 1.25rem;
     }
@@ -1682,6 +1700,17 @@ a {
         padding: 0 1rem;
     }
 
+    .skill-row {
+        grid-template-columns: 80px 1fr 32px; /* au lieu de 110px */
+        gap: 0.4rem;
+    }
+
+    .navbar,
+    .scroll-progress {
+        width: 100%;
+        max-width: 100%;
+    }
+
     .nav-container {
         padding: 0 1rem;
     }
@@ -1759,7 +1788,17 @@ a {
     }
 
     .proj-card {
-        width: 90vw;
+        width: calc(100vw - 40px);
+        max-width: 350px;
+    }
+
+    .carousel-stage {
+        overflow: hidden;
+        height: 520px;
+    }
+
+    .carousel-wrap {
+        overflow: hidden;
     }
 
     .proj-card-image {

@@ -11,15 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 tags: ["Vue.js", "Javascript", "SQLite", "REST API"],
                 glyph: "G",
                 image: 'logo.png',
-                path: "https://github.com/Noms-001/glpi-vue.git"
+                path: "~/projects/glpi-vue",
+                github: "https://github.com/Noms-001/glpi-vue",
+                demo: ""
             },
             {
                 title: "Dolibarr 23 API",
                 desc: "Couche API REST pour Dolibarr ERP/CRM, pensée pour connecter des outils tiers sans friction.",
                 tags: ["Vue.js", "Typescript", "SQLite", "REST API"],
-                glyph: "D", 
+                glyph: "D",
                 image: 'logo.png',
-                path: "https://github.com/Noms-001/dolibarr-vue.git"
+                path: "~/projects/dolibarr-vue",
+                github: "https://github.com/Noms-001/dolibarr-vue",
+                demo: ""
             },
             {
                 title: "GLPI 11 Backend",
@@ -27,7 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 tags: ["Java", "Spring Boot (MVC)", "SQLite"],
                 glyph: "S",
                 image: 'logo.png',
-                path: "https://github.com/Noms-001/glpi-back"
+                path: "~/projects/glpi-back",
+                github: "https://github.com/Noms-001/glpi-back",
+                demo: ""
             },
             {
                 title: "Dolibarr 23 Backend",
@@ -35,7 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 tags: ["Java", "Spring Boot (MVC)", "SQLite"],
                 glyph: "A",
                 image: 'logo.png',
-                path: "https://github.com/Noms-001/dolibarr-back"
+                path: "~/projects/dolibarr-back",
+                github: "https://github.com/Noms-001/dolibarr-back",
+                demo: ""
             },
             {
                 title: "Système de Gestion de Recrutement",
@@ -43,7 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 tags: ["Java", "Spring Boot (MVC)", "SQLite"],
                 glyph: "R",
                 image: 'logo.png',
-                path: "https://github.com/Noms-001/Gestion_Recrutement"
+                path: "~/projects/gestion-recrutement",
+                github: "https://github.com/Noms-001/Gestion_Recrutement",
+                demo: ""
             },
             {
                 title: "Ce portfolio",
@@ -51,7 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 tags: ["HTML5", "CSS3", "JavaScript"],
                 glyph: "P",
                 image: 'logo.png',
-                path: "~/projects/portfolio"
+                path: "~/projects/portfolio",
+                github: "https://github.com/Noms-001/portfolio",
+                demo: ""
             }
         ];
         const logData = [
@@ -62,10 +74,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: "Système de Gestion d'Entreprise",
                 desc: "Application de gestion d'entreprise intégrant le recrutement, la gestion des dossiers des employés et le suivi des présences."
             },
-            { hash: "6c17aa", year: "2024", title: "Spring Boot en profondeur", desc: "Montée en compétence backend, architecture propre." },
-            { hash: "2d804f", year: "2023", title: "Licence Informatique", desc: "Début du cursus universitaire." },
-            { hash: "18a3e2", year: "2023", title: "Baccalauréat série D", desc: "Obtention du diplôme, série scientifique." },
-            { hash: "0041fb", year: "2022", title: "Baccalauréat série A2", desc: "Premier diplôme, orientation littéraire." }
+            {
+                hash: "6c17aa",
+                year: "2024",
+                title: "Spring Boot en profondeur",
+                desc: "Montée en compétence backend, architecture propre."
+            },
+            {
+                hash: "2d804f",
+                year: "2023",
+                title: "Licence Informatique",
+                desc: "Début du cursus universitaire."
+            },
+            {
+                hash: "18a3e2",
+                year: "2023",
+                title: "Baccalauréat série D",
+                desc: "Obtention du diplôme, série scientifique."
+            },
+            {
+                hash: "0041fb",
+                year: "2022",
+                title: "Baccalauréat série A2",
+                desc: "Premier diplôme, orientation littéraire."
+            }
         ];
         const stats = [{ n: 20, l: "Projets réalisés", plus: true }, { n: 8, l: "Technologies maîtrisées", plus: false }, { n: 3, l: "Années de code", plus: true }, { n: 10000, l: "Lignes de code", plus: true }];
 
@@ -187,8 +219,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3>${p.title}</h3><p>${p.desc}</p>
                 <div class="project-tags-mini">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
                 <div class="project-card-actions">
-                    <a href="#"><i class="bi bi-github"></i> Code</a>
-                    <a href="#" class="primary"><i class="bi bi-play-circle"></i> Démo</a>
+                    <a href="${p.github}" target="_blank">
+                        <i class="bi bi-github"></i> Code
+                    </a>
+
+                    ${p.demo
+                ? `
+                        <a href="${p.demo}" target="_blank" class="primary">
+                            <i class="bi bi-play-circle"></i> Démo
+                        </a>
+                        `
+                :
+                `
+                        <a href="#" class="primary disabled">
+                            <i class="bi bi-hourglass"></i> Bientôt
+                        </a>
+                        `
+            }
                 </div>
             </div>
         </div>`).join('');
@@ -202,28 +249,78 @@ document.addEventListener('DOMContentLoaded', () => {
         const N = cards.length;
 
         function layout() {
+
             const stageW = stage.offsetWidth;
-            const isMobile = stageW < 640;
+            const isMobile = stageW < 768;
+
             cards.forEach((card, i) => {
+
                 let offset = i - active;
+
                 if (offset > N / 2) offset -= N;
                 if (offset < -N / 2) offset += N;
+
                 const abs = Math.abs(offset);
-                const xUnit = isMobile ? stageW * 0.62 : 280;
-                const x = offset * xUnit;
-                const scale = 1 - Math.min(abs * 0.14, 0.4);
-                const rotY = offset * -22;
-                const z = -abs * 140;
-                const opacity = abs > 2 ? 0 : 1 - abs * 0.32;
-                const blur = abs > 0 ? Math.min(abs * 1.3, 3) : 0;
-                card.style.transform = `translate(-50%,-50%) translateX(${x}px) translateZ(${z}px) rotateY(${rotY}deg) scale(${scale})`;
-                card.style.opacity = opacity;
-                card.style.filter = `blur(${blur}px)`;
+
+                // ==========================
+                // VERSION MOBILE
+                // ==========================
+                if (isMobile) {
+
+                    card.style.left = "50%";
+                    card.style.top = "50%";
+
+                    if (offset === 0) {
+
+                        card.style.transform =
+                            "translate(-50%,-50%) scale(1)";
+
+                        card.style.opacity = "1";
+                        card.style.filter = "none";
+                        card.style.zIndex = "100";
+                        card.style.pointerEvents = "auto";
+
+                    } else {
+
+                        card.style.transform =
+                            "translate(-50%,-50%) scale(.9)";
+
+                        card.style.opacity = "0";
+                        card.style.filter = "none";
+                        card.style.zIndex = "1";
+                        card.style.pointerEvents = "none";
+
+                    }
+
+                    return;
+                }
+
+                // ==========================
+                // VERSION DESKTOP
+                // ==========================
+
+                const x = offset * 260;
+                const scale = 1 - Math.min(abs * 0.12, 0.35);
+                const rotY = offset * -18;
+                const z = -abs * 120;
+
+                card.style.transform =
+                    `translate(-50%,-50%)
+                    translateX(${x}px)
+                    translateZ(${z}px)
+                    rotateY(${rotY}deg)
+                    scale(${scale})`;
+
+                card.style.opacity = abs > 2 ? 0 : 1 - abs * 0.25;
+                card.style.filter = `blur(${abs * 1}px)`;
                 card.style.zIndex = 100 - abs;
-                card.style.pointerEvents = offset === 0 ? 'auto' : 'none';
+                card.style.pointerEvents = offset === 0 ? "auto" : "none";
             });
-            dashes.forEach((d, i) => d.classList.toggle('active', i === active));
-            indexLabel.textContent = String(active + 1).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
+
+            dashes.forEach((d, i) => d.classList.toggle("active", i === active));
+
+            indexLabel.textContent =
+                `${String(active + 1).padStart(2, "0")} / ${String(N).padStart(2, "0")}`;
         }
         function goTo(i) { active = ((i % N) + N) % N; layout(); }
         document.getElementById('prevBtn').addEventListener('click', () => goTo(active - 1));
