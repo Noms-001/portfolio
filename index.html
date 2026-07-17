@@ -2,1575 +2,537 @@
 <html lang="fr">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Myah Ny Aintso — Développeur Full-Stack</title>
-  <link rel="icon" href="https://ui-avatars.com/api/?name=A&background=7e57c2&color=ffffff&size=128">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
-  <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --bg: #F8F7F4;
-      --white: #FFFFFF;
-      --ink: #1A1A1A;
-      --ink2: #444444;
-      --ink3: #888888;
-      --accent: #1D4ED8;
-      --accent2: #2563EB;
-      --line: #E4E2DC;
-      --tag-bg: #EFEFEC;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.6;
-    }
-
-    /* ────────────────────────────────
-       LAYOUT : sidebar + main
-    ──────────────────────────────── */
-    .layout {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      min-height: 100vh;
-    }
-
-    /* ── SIDEBAR ── */
-    .sidebar {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow-y: auto;
-      background: var(--white);
-      border-right: 1px solid var(--line);
-      display: flex;
-      flex-direction: column;
-      padding: 2.5rem 2rem;
-    }
-
-    .sidebar-avatar {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: grid;
-      place-items: center;
-      margin-bottom: 1.4rem;
-      flex-shrink: 0;
-    }
-
-    .sidebar-avatar i {
-      color: #fff;
-      font-size: 2rem;
-    }
-
-    .sidebar-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      line-height: 1.25;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.3rem;
-    }
-
-    .sidebar-role {
-      font-size: 0.8rem;
-      color: var(--ink3);
-      font-weight: 300;
-      margin-bottom: 1.75rem;
-    }
-
-    .sidebar-nav {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-      margin-bottom: auto;
-    }
-
-    .sidebar-nav a {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      padding: 0.55rem 0.75rem;
-      border-radius: 6px;
-      text-decoration: none;
-      color: var(--ink2);
-      font-size: 0.875rem;
-      font-weight: 400;
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .sidebar-nav a i {
-      font-size: 1rem;
-      color: var(--ink3);
-      transition: color 0.15s;
-      width: 18px;
-      text-align: center;
-    }
-
-    .sidebar-nav a:hover {
-      background: var(--bg);
-      color: var(--ink);
-    }
-
-    .sidebar-nav a:hover i {
-      color: var(--accent);
-    }
-
-    .sidebar-nav a.active {
-      background: var(--accent);
-      color: #fff;
-      font-weight: 500;
-    }
-
-    .sidebar-nav a.active i {
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .sidebar-divider {
-      height: 1px;
-      background: var(--line);
-      margin: 1.5rem 0;
-    }
-
-    .sidebar-contacts {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .sidebar-contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-    }
-
-    .sidebar-contact-item i {
-      color: var(--accent);
-      font-size: 0.9rem;
-      margin-top: 0.15rem;
-      flex-shrink: 0;
-    }
-
-    .sidebar-contact-item a,
-    .sidebar-contact-item span {
-      font-size: 0.78rem;
-      color: var(--ink2);
-      text-decoration: none;
-      line-height: 1.45;
-      word-break: break-word;
-    }
-
-    .sidebar-contact-item a:hover {
-      color: var(--accent);
-    }
-
-    .sidebar-socials {
-      display: flex;
-      gap: 0.6rem;
-      margin-top: 1.5rem;
-    }
-
-    .sidebar-social {
-      width: 34px;
-      height: 34px;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      display: grid;
-      place-items: center;
-      text-decoration: none;
-      color: var(--ink2);
-      font-size: 1rem;
-      transition: border-color 0.15s, color 0.15s, background 0.15s;
-    }
-
-    .sidebar-social:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: #EEF2FF;
-    }
-
-    /* ── MAIN ── */
-    .main {
-      padding: 0;
-    }
-
-    /* ── SECTIONS ── */
-    .section {
-      padding: 4rem 3.5rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .section:last-child {
-      border-bottom: none;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .section-header-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--accent);
-      border-radius: 6px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-    }
-
-    .section-header-icon i {
-      color: #fff;
-      font-size: 1rem;
-    }
-
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    /* ── HERO SECTION ── */
-    #hero {
-      padding: 4rem 3.5rem;
-      border-bottom: 1px solid var(--line);
-      background: var(--white);
-    }
-
-    .hero-overline {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .hero-overline::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--line);
-      max-width: 60px;
-    }
-
-    .hero-name {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-terminal {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1rem;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-      min-height: 1.6em;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 2px;
-      height: 1em;
-      background: var(--accent);
-      margin-left: 2px;
-      vertical-align: text-bottom;
-      animation: blink 1s step-end infinite;
-    }
-
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
-    }
-
-    .hero-bio {
-      font-size: 1rem;
-      color: var(--ink2);
-      max-width: 600px;
-      line-height: 1.8;
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    .hero-bio strong {
-      color: var(--ink);
-      font-weight: 500;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.65rem 1.4rem;
-      border-radius: 6px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      font-family: 'DM Sans', sans-serif;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: all 0.15s;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: #1e40af;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--ink);
-      border: 1px solid var(--line);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: #EEF2FF;
-    }
-
-    /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-
-    .about-text p {
-      font-size: 0.92rem;
-      color: var(--ink2);
-      margin-bottom: 1rem;
-      line-height: 1.85;
-      font-weight: 300;
-    }
-
-    .about-text p strong {
-      color: var(--ink);
-      font-weight: 500;
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .stat-box {
-      background: var(--white);
-      padding: 1.4rem 1.2rem;
-    }
-
-    .stat-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--accent);
-      letter-spacing: -0.03em;
-    }
-
-    .stat-label {
-      font-size: 0.78rem;
-      color: var(--ink3);
-      margin-top: 0.15rem;
-    }
-
-    .lang-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-      margin-top: 1.5rem;
-    }
-
-    .lang-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      padding-bottom: 0.65rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .lang-item:last-child {
-      border-bottom: none;
-    }
-
-    .lang-name {
-      color: var(--ink);
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .lang-name i {
-      color: var(--accent);
-      font-size: 0.85rem;
-    }
-
-    .lang-level {
-      font-size: 0.75rem;
-      color: var(--ink3);
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .skill-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 1.4rem;
-      transition: border-color 0.2s;
-    }
-
-    .skill-card:hover {
-      border-color: var(--accent);
-    }
-
-    .skill-card-head {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.1rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .skill-card-head i {
-      color: var(--accent);
-      font-size: 1.1rem;
-    }
-
-    .skill-card-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .skill-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      padding: 0.25rem 0.55rem;
-      border-radius: 4px;
-      background: var(--tag-bg);
-      color: var(--ink2);
-      border: 1px solid var(--line);
-    }
-
-    /* ── PROJECTS ── */
-    .projects-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .project-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 1.75rem;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1.5rem;
-      transition: border-color 0.2s;
-    }
-
-    .project-card:hover {
-      border-color: var(--accent);
-    }
-
-    .project-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: #EEF2FF;
-      border: 1px solid #BFDBFE;
-      border-radius: 4px;
-      padding: 0.2rem 0.5rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .project-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.6rem;
-    }
-
-    .project-desc {
-      font-size: 0.875rem;
-      color: var(--ink2);
-      line-height: 1.75;
-      margin-bottom: 1.1rem;
-      font-weight: 300;
-    }
-
-    .project-features {
-      list-style: none;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.35rem 1rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .project-features li {
-      font-size: 0.8rem;
-      color: var(--ink2);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .project-features li i {
-      color: var(--accent);
-      font-size: 0.7rem;
-      flex-shrink: 0;
-    }
-
-    .project-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .project-icon-box {
-      width: 52px;
-      height: 52px;
-      background: var(--bg);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-    }
-
-    .project-icon-box i {
-      font-size: 1.5rem;
-      color: var(--accent);
-    }
-
-    /* ── STACK ── */
-    .stack-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .stack-item {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 0.45rem 0.85rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--ink2);
-      transition: border-color 0.15s, color 0.15s;
-    }
-
-    .stack-item:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .stack-item i {
-      font-size: 0.9rem;
-      color: var(--accent);
-    }
-
-    /* ── CONTACT ── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-
-    .contact-intro {
-      font-size: 0.92rem;
-      color: var(--ink2);
-      line-height: 1.85;
-      font-weight: 300;
-      margin-bottom: 2rem;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-      padding: 0.9rem 1rem;
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      text-decoration: none;
-      color: var(--ink);
-      transition: border-color 0.15s;
-    }
-
-    .contact-link:hover {
-      border-color: var(--accent);
-    }
-
-    .contact-link i {
-      color: var(--accent);
-      font-size: 1.1rem;
-      width: 20px;
-      text-align: center;
-      flex-shrink: 0;
-    }
-
-    .contact-link-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 0.05rem;
-    }
-
-    .contact-link-label {
-      font-size: 0.72rem;
-      color: var(--ink3);
-    }
-
-    .contact-link-val {
-      font-size: 0.875rem;
-      font-weight: 500;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      margin-bottom: 1rem;
-    }
-
-    .form-group label {
-      font-size: 0.78rem;
-      color: var(--ink2);
-      font-weight: 500;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 0.65rem 0.9rem;
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
-      transition: border-color 0.15s, box-shadow 0.15s;
-      resize: vertical;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-    }
-
-    .form-group textarea {
-      min-height: 110px;
-    }
-
-    /* ── QUOTE ── */
-    .quote-block {
-      margin-top: 2.5rem;
-      padding: 1.75rem 2rem;
-      border-left: 3px solid var(--accent);
-      background: var(--white);
-      border-radius: 0 8px 8px 0;
-    }
-
-    .quote-text {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      font-style: italic;
-      color: var(--ink);
-      line-height: 1.5;
-    }
-
-    .quote-author {
-      font-size: 0.78rem;
-      color: var(--ink3);
-      margin-top: 0.6rem;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 1.75rem 3.5rem;
-      border-top: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      color: var(--ink3);
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    footer span {
-      color: var(--accent);
-    }
-
-    /* ── REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar {
-        position: static;
-        height: auto;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        align-items: center;
-        border-right: none;
-        border-bottom: 1px solid var(--line);
-        padding: 1.5rem;
-      }
-
-      .sidebar-avatar {
-        margin-bottom: 0;
-      }
-
-      .sidebar-nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-bottom: 0;
-      }
-
-      .sidebar-nav a {
-        padding: 0.4rem 0.6rem;
-      }
-
-      .sidebar-contacts {
-        display: none;
-      }
-
-      .section {
-        padding: 2.5rem 1.5rem;
-      }
-
-      #hero {
-        padding: 2.5rem 1.5rem;
-      }
-
-      .about-grid,
-      .skills-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-features {
-        grid-template-columns: 1fr;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-        padding: 1.5rem;
-      }
-    }
-
-    /* ───────── CUSTOM SCROLLBAR SIDEBAR ───────── */
-    /* largeur du scroll */
-    .sidebar::-webkit-scrollbar {
-      width: 6px;
-    }
-    
-    /* piste (fond) */
-    .sidebar::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    
-    /* barre (thumb) */
-    .sidebar::-webkit-scrollbar-thumb {
-      background: linear-gradient(
-        180deg,
-        #1D4ED8,
-        #60A5FA,
-        #A78BFA
-      );
-      border-radius: 10px;
-      transition: all 0.3s ease;
-    }
-    
-    /* hover */
-    .sidebar::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(
-        180deg,
-        #2563EB,
-        #3B82F6,
-        #8B5CF6
-      );
-    }
-    
-    /* Firefox */
-    .sidebar {
-      scrollbar-width: thin;
-      scrollbar-color: #3B82F6 transparent;
-    }
-
-    @media (max-width: 600px) {
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-card {
-        grid-template-columns: 1fr;
-      }
-
-      .project-icon-box {
-        display: none;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Nomena Christian — Développeur Full Stack. Java, Spring Boot, Vue.js, MySQL. Applications web, APIs et systèmes de gestion sur mesure.">
+    <meta name="keywords"
+        content="développeur full stack, java, spring boot, vue.js, mysql, portfolio, nomena christian, madagascar">
+    <meta name="author" content="Nomena Christian">
+    <meta property="og:title" content="Nomena Christian — Développeur Full Stack">
+    <meta property="og:description"
+        content="Java · Spring Boot · Vue.js · MySQL — applications web et APIs construites pour durer.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="logo.png">
+    <title>Nomena Christian — Développeur Full Stack</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
 
-  <div class="layout">
-
-    <!-- ── SIDEBAR ── -->
-    <aside class="sidebar">
-      <div class="sidebar-avatar">
-        <i class="bi bi-person-fill"></i>
-      </div>
-      <div class="sidebar-name">Myah Ny Aintso<br>Rakoto Andrianohavy</div>
-      <div class="sidebar-role">Full-Stack Developer</div>
-
-      <ul class="sidebar-nav">
-        <li><a href="#hero" class="active"><i class="bi bi-house"></i> Accueil</a></li>
-        <li><a href="#about"><i class="bi bi-person"></i> À propos</a></li>
-        <li><a href="#skills"><i class="bi bi-tools"></i> Compétences</a></li>
-        <li><a href="#projects"><i class="bi bi-folder2-open"></i> Projets</a></li>
-        <li><a href="#stack"><i class="bi bi-layers"></i> Stack</a></li>
-        <li><a href="#contact"><i class="bi bi-envelope"></i> Contact</a></li>
-      </ul>
-
-      <div class="sidebar-divider"></div>
-
-      <div class="sidebar-contacts">
-        <div class="sidebar-contact-item">
-          <i class="bi bi-geo-alt"></i>
-          <span>Lot II V 59 A Bis, Ampandrana Besarety, Antananarivo, Madagascar</span>
-        </div>
-        <div class="sidebar-contact-item">
-          <i class="bi bi-envelope"></i>
-          <a href="mailto:myahaintso@example.com">myahaintso@example.com</a>
-        </div>
-        <div class="sidebar-contact-item">
-          <i class="bi bi-telephone"></i>
-          <a href="tel:+261341416636">+261 34 14 166 36</a>
-        </div>
-        <div class="sidebar-contact-item">
-          <i class="bi bi-github"></i>
-          <a href="https://github.com/AlphaTech23" target="_blank">github.com/AlphaTech23</a>
-        </div>
-        <div class="sidebar-contact-item">
-          <i class="bi bi-linkedin"></i>
-          <a href="https://linkedin.com/in/myah-ny-aintso-rakoto-andrianohavy-2933a9402" target="_blank">LinkedIn</a>
-        </div>
-      </div>
-
-      <div class="sidebar-socials">
-        <a href="https://github.com/AlphaTech23" target="_blank" class="sidebar-social" title="GitHub">
-          <i class="bi bi-github"></i>
-        </a>
-        <a href="https://linkedin.com/in/myah-ny-aintso-rakoto-andrianohavy-2933a9402" target="_blank"
-          class="sidebar-social" title="LinkedIn">
-          <i class="bi bi-linkedin"></i>
-        </a>
-        <a href="mailto:votre.email@example.com" class="sidebar-social" title="Email">
-          <i class="bi bi-envelope"></i>
-        </a>
-      </div>
-    </aside>
-
-    <!-- ── MAIN CONTENT ── -->
-    <main class="main">
-
-      <!-- HERO -->
-      <section id="hero">
-        <div class="hero-overline">Disponible pour de nouveaux projets</div>
-        <h1 class="hero-name reveal">Myah Ny Aintso<br>Rakoto Andrianohavy</h1>
-        <div class="hero-terminal reveal"><span id="typed"></span><span class="cursor"></span></div>
-        <p class="hero-bio reveal">
-          Développeur <strong>Full-Stack</strong> passionné par la conception d'applications web,
-          l'administration de systèmes Linux et l'analyse de données.
-          Je construis des solutions qui répondent à de véritables besoins métier —
-          de la gestion de parc informatique aux tableaux de bord décisionnels.
-        </p>
-        <div class="hero-actions reveal">
-          <a href="#projects" class="btn btn-primary">
-            <i class="bi bi-folder2-open"></i> Voir mes projets
-          </a>
-          <a href="#contact" class="btn btn-outline">
-            <i class="bi bi-envelope"></i> Me contacter
-          </a>
-          <a href="#" class="btn btn-outline">
-            <i class="bi bi-file-earmark-pdf"></i> Télécharger le CV
-          </a>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about" class="section">
-        <div class="section-header reveal">
-          <div class="section-header-icon"><i class="bi bi-person"></i></div>
-          <h2 class="section-title">À propos</h2>
-        </div>
-        <div class="about-grid">
-          <div class="about-text reveal">
-            <p>
-              Curieux et autonome, je m'intéresse particulièrement aux <strong>technologies open source</strong>,
-              à l'automatisation et à la visualisation de données. Mon approche : transformer des
-              problèmes complexes en solutions simples et utiles.
-            </p>
-            <p>
-              Titulaire d'une <strong>Licence en Informatique</strong>, je maîtrise l'ensemble
-              de la chaîne — du front-end Vue.js aux pipelines data avec Airflow et DBT,
-              en passant par la BI avec Power BI et la cartographie avec Leaflet et QGIS.
-            </p>
-            <p>
-              Je travaille sous <strong>Linux Ubuntu</strong>, utilise Docker au quotidien,
-              et m'appuie sur Git pour tout projet. Mes qualités : esprit analytique,
-              autonomie et capacité d'apprentissage rapide.
-            </p>
-
-            <ul class="lang-list" style="margin-top: 2rem;">
-              <li class="lang-item">
-                <span class="lang-name"><i class="bi bi-translate"></i> Français</span>
-                <span class="lang-level">Courant</span>
-              </li>
-              <li class="lang-item">
-                <span class="lang-name"><i class="bi bi-translate"></i> Anglais</span>
-                <span class="lang-level">Technique</span>
-              </li>
-              <li class="lang-item">
-                <span class="lang-name"><i class="bi bi-translate"></i> Malagasy</span>
-                <span class="lang-level">Langue maternelle</span>
-              </li>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo"><img src="logo.png" alt="NC" style="width: 50px;"></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Accueil</a></li>
+                <li><a href="#about" class="nav-link">À propos</a></li>
+                <li><a href="#skills" class="nav-link">Compétences</a></li>
+                <li><a href="#projects" class="nav-link">Projets</a></li>
+                <li><a href="#timeline" class="nav-link">Parcours</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#contact" class="nav-cta">Discutons →</a></li>
             </ul>
-          </div>
-          <div class="reveal">
-            <div class="about-stats">
-              <div class="stat-box">
-                <div class="stat-num">8+</div>
-                <div class="stat-label">Projets réalisés</div>
-              </div>
-              <div class="stat-box">
-                <div class="stat-num">15+</div>
-                <div class="stat-label">Technologies</div>
-              </div>
-              <div class="stat-box">
-                <div class="stat-num">3</div>
-                <div class="stat-label">Langues parlées</div>
-              </div>
-              <div class="stat-box">
-                <div class="stat-num">∞</div>
-                <div class="stat-label">Curiosité technique</div>
-              </div>
-            </div>
-
-            <div class="quote-block" style="margin-top: 1.5rem;">
-              <div class="quote-text">« Transformer des problèmes complexes en solutions simples et utiles. »</div>
-              <div class="quote-author">— Myah Ny Aintso</div>
-            </div>
-          </div>
         </div>
-      </section>
+    </nav>
 
-      <!-- SKILLS -->
-      <section id="skills" class="section">
-        <div class="section-header reveal">
-          <div class="section-header-icon"><i class="bi bi-tools"></i></div>
-          <h2 class="section-title">Compétences</h2>
-        </div>
-        <div class="skills-grid">
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-grid-fx">
+                <div class="scan-line"></div>
+                <div class="hero-vignette"></div>
+            </div>
+            <span class="coord coord-tl">LAT -18.9° · LONG 47.5°<br>MADAGASCAR</span>
+            <span class="coord coord-tr">STATUS: EN LIGNE<br>DISPONIBLE — JUIL. 2026</span>
 
-          <div class="skill-card reveal">
-            <div class="skill-card-head">
-              <i class="bi bi-code-slash"></i>
-              <span class="skill-card-title">Développement Web</span>
-            </div>
-            <div class="skill-tags">
-              <span class="skill-tag">JavaScript</span>
-              <span class="skill-tag">TypeScript</span>
-              <span class="skill-tag">Vue.js 3</span>
-              <span class="skill-tag">React</span>
-              <span class="skill-tag">Node.js</span>
-              <span class="skill-tag">HTML5 / CSS3</span>
-              <span class="skill-tag">API REST</span>
-              <span class="skill-tag">JWT</span>
-              <span class="skill-tag">Bootstrap</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-card-head">
-              <i class="bi bi-server"></i>
-              <span class="skill-card-title">Back-end & Frameworks</span>
-            </div>
-            <div class="skill-tags">
-              <span class="skill-tag">Java</span>
-              <span class="skill-tag">Spring Boot</span>
-              <span class="skill-tag">PHP</span>
-              <span class="skill-tag">Laravel</span>
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">Django</span>
-              <span class="skill-tag">C#</span>
-              <span class="skill-tag">.NET</span>
-              <span class="skill-tag">C</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-card-head">
-              <i class="bi bi-database"></i>
-              <span class="skill-card-title">Bases de données</span>
-            </div>
-            <div class="skill-tags">
-              <span class="skill-tag">PostgreSQL</span>
-              <span class="skill-tag">MySQL</span>
-              <span class="skill-tag">SQLite</span>
-              <span class="skill-tag">SQL Server</span>
-              <span class="skill-tag">PostGIS</span>
-              <span class="skill-tag">Modélisation</span>
-              <span class="skill-tag">Optimisation SQL</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-card-head">
-              <i class="bi bi-bar-chart-line"></i>
-              <span class="skill-card-title">Data & BI</span>
-            </div>
-            <div class="skill-tags">
-              <span class="skill-tag">Power BI</span>
-              <span class="skill-tag">DAX</span>
-              <span class="skill-tag">DBT</span>
-              <span class="skill-tag">Apache Airflow</span>
-              <span class="skill-tag">Étoile de faits</span>
-              <span class="skill-tag">KPI Design</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-card-head">
-              <i class="bi bi-terminal"></i>
-              <span class="skill-card-title">Systèmes & DevOps</span>
-            </div>
-            <div class="skill-tags">
-              <span class="skill-tag">Linux Ubuntu</span>
-              <span class="skill-tag">Docker</span>
-              <span class="skill-tag">Docker Compose</span>
-              <span class="skill-tag">Git / GitHub</span>
-              <span class="skill-tag">GLPI</span>
-              <span class="skill-tag">Dual Boot</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <div class="skill-card-head">
-              <i class="bi bi-map"></i>
-              <span class="skill-card-title">Cartographie & Outils</span>
-            </div>
-            <div class="skill-tags">
-              <span class="skill-tag">Leaflet</span>
-              <span class="skill-tag">QGIS</span>
-              <span class="skill-tag">Figma</span>
-              <span class="skill-tag">Photoshop</span>
-              <span class="skill-tag">Excel</span>
-              <span class="skill-tag">TinyMCE</span>
-              <span class="skill-tag">Maven</span>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- PROJECTS -->
-      <section id="projects" class="section">
-        <div class="section-header reveal">
-          <div class="section-header-icon"><i class="bi bi-folder2-open"></i></div>
-          <h2 class="section-title">Projets</h2>
-        </div>
-        <div class="projects-list">
-
-          <!-- Projet 1 : GLPI Clone -->
-          <div class="project-card reveal">
-            <div>
-              <div class="project-badge"><i class="bi bi-pc-display"></i> Application Web Full-Stack</div>
-              <div class="project-title">Application de Gestion de Tickets (GLPI Clone)</div>
-              <div class="project-desc">Plateforme de gestion de support informatique inspirée de GLPI pour gérer les
-                tickets, les utilisateurs, les techniciens et le parc informatique.</div>
-              <ul class="project-features">
-                <li><i class="bi bi-check2"></i> Gestion des tickets et affectations</li>
-                <li><i class="bi bi-check2"></i> Gestion des profils utilisateurs</li>
-                <li><i class="bi bi-check2"></i> Gestion des équipements</li>
-                <li><i class="bi bi-check2"></i> Interface multilingue</li>
-              </ul>
-              <div class="project-tech">
-                <span class="skill-tag">Vue.js</span>
-                <span class="skill-tag">SQLite</span>
-                <span class="skill-tag">API REST</span>
-                <span class="skill-tag">JWT</span>
-              </div>
-            </div>
-            <div class="project-icon-box">
-              <i class="bi bi-pc-display-horizontal"></i>
-            </div>
-          </div>
-
-          <!-- Projet 2 : Dashboard Logistique -->
-          <div class="project-card reveal">
-            <div>
-              <div class="project-badge"><i class="bi bi-bar-chart"></i> Business Intelligence</div>
-              <div class="project-title">Dashboard Décisionnel Logistique</div>
-              <div class="project-desc">Tableau de bord interactif pour l'analyse des performances logistiques avec KPI
-                et mesures DAX avancées.</div>
-              <ul class="project-features">
-                <li><i class="bi bi-check2"></i> Analyse des meilleurs clients</li>
-                <li><i class="bi bi-check2"></i> Analyse des meilleurs livreurs</li>
-                <li><i class="bi bi-check2"></i> Analyse des types de colis</li>
-                <li><i class="bi bi-check2"></i> Suivi des performances</li>
-              </ul>
-              <div class="project-tech">
-                <span class="skill-tag">Power BI</span>
-                <span class="skill-tag">DAX</span>
-                <span class="skill-tag">SQL</span>
-              </div>
-            </div>
-            <div class="project-icon-box">
-              <i class="bi bi-graph-up-arrow"></i>
-            </div>
-          </div>
-
-          <!-- Projet 3 : Data Engineering -->
-          <div class="project-card reveal">
-            <div>
-              <div class="project-badge"><i class="bi bi-database-gear"></i> Data Engineering</div>
-              <div class="project-title">Plateforme Data Engineering</div>
-              <div class="project-desc">Environnement de traitement de données avec orchestration automatisée et
-                transformation via DBT.</div>
-              <ul class="project-features">
-                <li><i class="bi bi-check2"></i> Pipelines ETL</li>
-                <li><i class="bi bi-check2"></i> Orchestration de workflows</li>
-                <li><i class="bi bi-check2"></i> Gestion des dépendances</li>
-                <li><i class="bi bi-check2"></i> Déploiement conteneurisé</li>
-              </ul>
-              <div class="project-tech">
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Apache Airflow</span>
-                <span class="skill-tag">DBT</span>
-              </div>
-            </div>
-            <div class="project-icon-box">
-              <i class="bi bi-arrows-angle-contract"></i>
-            </div>
-          </div>
-
-          <!-- Projet 4 : Gestion de Stock -->
-          <div class="project-card reveal">
-            <div>
-              <div class="project-badge"><i class="bi bi-boxes"></i> Application Métier</div>
-              <div class="project-title">Système de Gestion de Stock Informatique</div>
-              <div class="project-desc">Module de gestion de stock d'équipements informatiques avec suivi des mouvements
-                et affectations.</div>
-              <ul class="project-features">
-                <li><i class="bi bi-check2"></i> Gestion des stocks</li>
-                <li><i class="bi bi-check2"></i> Inventaire</li>
-                <li><i class="bi bi-check2"></i> Historique des mouvements</li>
-                <li><i class="bi bi-check2"></i> Affectation du matériel</li>
-              </ul>
-              <div class="project-tech">
-                <span class="skill-tag">Vue.js</span>
-                <span class="skill-tag">SQLite</span>
-              </div>
-            </div>
-            <div class="project-icon-box">
-              <i class="bi bi-box-seam"></i>
-            </div>
-          </div>
-
-          <!-- Projet 5 : Système Multilingue -->
-          <div class="project-card reveal">
-            <div>
-              <div class="project-badge"><i class="bi bi-globe2"></i> Outil de Configuration</div>
-              <div class="project-title">Système de Gestion Multilingue</div>
-              <div class="project-desc">Système de traduction dynamique des statuts et contenus de l'application en
-                Malagasy et Français.</div>
-              <ul class="project-features">
-                <li><i class="bi bi-check2"></i> Traduction Malagasy / Français</li>
-                <li><i class="bi bi-check2"></i> Gestion des statuts</li>
-                <li><i class="bi bi-check2"></i> Gestion des couleurs dynamiques</li>
-                <li><i class="bi bi-check2"></i> Configuration via base de données</li>
-              </ul>
-              <div class="project-tech">
-                <span class="skill-tag">SQLite</span>
-                <span class="skill-tag">Vue.js</span>
-              </div>
-            </div>
-            <div class="project-icon-box">
-              <i class="bi bi-translate"></i>
-            </div>
-          </div>
-
-          <!-- Projet 6 : Composants UI -->
-          <div class="project-card reveal">
-            <div>
-              <div class="project-badge"><i class="bi bi-brush"></i> Front-End</div>
-              <div class="project-title">Composants UI Réutilisables</div>
-              <div class="project-desc">Bibliothèque de composants réutilisables pour accélérer le développement
-                d'applications.</div>
-              <ul class="project-features">
-                <li><i class="bi bi-check2"></i> Tables interactives</li>
-                <li><i class="bi bi-check2"></i> Modales</li>
-                <li><i class="bi bi-check2"></i> Formulaires</li>
-                <li><i class="bi bi-check2"></i> Pagination & recherche temps réel</li>
-              </ul>
-              <div class="project-tech">
-                <span class="skill-tag">Vue.js 3</span>
-                <span class="skill-tag">TypeScript</span>
-              </div>
-            </div>
-            <div class="project-icon-box">
-              <i class="bi bi-layout-three-columns"></i>
-            </div>
-          </div>
-
-          <!-- Projet 7 : Cartographie Interactive -->
-          <div class="project-card reveal">
-            <div>
-              <div class="project-badge"><i class="bi bi-map"></i> SIG / Web Mapping</div>
-              <div class="project-title">Système de Cartographie Interactive</div>
-              <div class="project-desc">Applications de cartographie et de visualisation de données géographiques avec
-                Leaflet et QGIS.</div>
-              <ul class="project-features">
-                <li><i class="bi bi-check2"></i> Affichage de cartes interactives</li>
-                <li><i class="bi bi-check2"></i> Gestion des couches géographiques</li>
-                <li><i class="bi bi-check2"></i> Analyse spatiale</li>
-              </ul>
-              <div class="project-tech">
-                <span class="skill-tag">Leaflet</span>
-                <span class="skill-tag">QGIS</span>
-                <span class="skill-tag">PostGIS</span>
-              </div>
-            </div>
-            <div class="project-icon-box">
-              <i class="bi bi-geo-alt"></i>
-            </div>
-          </div>
-
-          <!-- Projet 8 : Déploiement Linux -->
-          <div class="project-card reveal">
-            <div>
-              <div class="project-badge"><i class="bi bi-terminal"></i> DevOps</div>
-              <div class="project-title">Déploiement et Administration Linux</div>
-              <div class="project-desc">Installation et administration d'environnements Linux pour le développement et
-                le déploiement d'applications.</div>
-              <ul class="project-features">
-                <li><i class="bi bi-check2"></i> Ubuntu</li>
-                <li><i class="bi bi-check2"></i> Docker</li>
-                <li><i class="bi bi-check2"></i> Dual Boot</li>
-                <li><i class="bi bi-check2"></i> Configuration EFI</li>
-              </ul>
-              <div class="project-tech">
-                <span class="skill-tag">Linux</span>
-                <span class="skill-tag">Ubuntu</span>
-                <span class="skill-tag">Docker</span>
-              </div>
-            </div>
-            <div class="project-icon-box">
-              <i class="bi bi-ubuntu"></i>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- STACK -->
-      <section id="stack" class="section">
-        <div class="section-header reveal">
-          <div class="section-header-icon"><i class="bi bi-layers"></i></div>
-          <h2 class="section-title">Stack complète</h2>
-        </div>
-        <div class="stack-grid reveal">
-          <div class="stack-item"><i class="bi bi-filetype-js"></i> JavaScript</div>
-          <div class="stack-item"><i class="bi bi-filetype-tsx"></i> TypeScript</div>
-          <div class="stack-item"><i class="bi bi-window"></i> Vue.js 3</div>
-          <div class="stack-item"><i class="bi bi-braces"></i> React</div>
-          <div class="stack-item"><i class="bi bi-node-plus"></i> Node.js</div>
-          <div class="stack-item"><i class="bi bi-filetype-java"></i> Java</div>
-          <div class="stack-item"><i class="bi bi-filetype-py"></i> Python</div>
-          <div class="stack-item"><i class="bi bi-filetype-php"></i> PHP</div>
-          <div class="stack-item"><i class="bi bi-filetype-cs"></i> C#</div>
-          <div class="stack-item"><i class="bi bi-filetype-html"></i> HTML5</div>
-          <div class="stack-item"><i class="bi bi-filetype-css"></i> CSS3</div>
-          <div class="stack-item"><i class="bi bi-database"></i> PostgreSQL</div>
-          <div class="stack-item"><i class="bi bi-database"></i> MySQL</div>
-          <div class="stack-item"><i class="bi bi-database"></i> SQL Server</div>
-          <div class="stack-item"><i class="bi bi-hdd"></i> SQLite</div>
-          <div class="stack-item"><i class="bi bi-map"></i> PostGIS</div>
-          <div class="stack-item"><i class="bi bi-bar-chart"></i> Power BI</div>
-          <div class="stack-item"><i class="bi bi-calculator"></i> DAX</div>
-          <div class="stack-item"><i class="bi bi-cpu"></i> Apache Airflow</div>
-          <div class="stack-item"><i class="bi bi-arrow-repeat"></i> DBT</div>
-          <div class="stack-item"><i class="bi bi-box-seam"></i> Docker</div>
-          <div class="stack-item"><i class="bi bi-terminal"></i> Linux Ubuntu</div>
-          <div class="stack-item"><i class="bi bi-git"></i> Git / GitHub</div>
-          <div class="stack-item"><i class="bi bi-map-fill"></i> Leaflet</div>
-          <div class="stack-item"><i class="bi bi-geo-alt"></i> QGIS</div>
-          <div class="stack-item"><i class="bi bi-vector-pen"></i> Figma</div>
-          <div class="stack-item"><i class="bi bi-infinity"></i> Spring Boot</div>
-          <div class="stack-item"><i class="bi bi-fire"></i> Laravel</div>
-          <div class="stack-item"><i class="bi bi-code"></i> Django</div>
-          <div class="stack-item"><i class="bi bi-microsoft"></i> .NET</div>
-          <div class="stack-item"><i class="bi bi-wrench"></i> GLPI</div>
-          <div class="stack-item"><i class="bi bi-file-earmark-excel"></i> Excel</div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact" class="section">
-        <div class="section-header reveal">
-          <div class="section-header-icon"><i class="bi bi-envelope"></i></div>
-          <h2 class="section-title">Contact</h2>
-        </div>
-        <div class="contact-grid">
-          <div class="reveal">
-            <p class="contact-intro">
-              Disponible pour des missions en freelance, des collaborations ou de nouvelles opportunités
-              professionnelles.
-              N'hésitez pas à me contacter, je réponds généralement sous 24h.
-            </p>
-            <div class="contact-links">
-              <a href="mailto:myahaintso@example.com" class="contact-link">
-                <i class="bi bi-envelope-at"></i>
-                <div class="contact-link-meta">
-                  <span class="contact-link-label">Email</span>
-                  <span class="contact-link-val">myahaintso@example.com</span>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-eyebrow"><span class="dot"></span> Disponible pour missions freelance & stages
+                    </div>
+                    <h1 class="hero-title">Je construis des<br>systèmes qui <em>tiennent</em>.</h1>
+                    <div class="hero-term"><span class="prompt">$</span> whoami<span class="cursor"
+                            id="heroCursor"></span></div>
+                    <p class="hero-desc" id="heroTyped"></p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary"><i class="bi bi-terminal"></i> Voir les projets</a>
+                        <a href="assets/cv.pdf" class="btn btn-outline" download><i class="bi bi-download"></i>
+                            Télécharger le CV</a>
+                    </div>
+                    <div class="hero-meta">
+                        <div><span class="n">20+</span><span class="l">Projets livrés</span></div>
+                        <div><span class="n">3</span><span class="l">Ans de pratique</span></div>
+                        <div><span class="n">3</span><span class="l">Stacks maîtrisées</span></div>
+                    </div>
                 </div>
-              </a>
-              <a href="https://github.com/AlphaTech23" target="_blank" class="contact-link">
-                <i class="bi bi-github"></i>
-                <div class="contact-link-meta">
-                  <span class="contact-link-label">GitHub</span>
-                  <span class="contact-link-val">github.com/AlphaTech23</span>
+
+                <div class="hero-panel">
+                    <div class="hero-panel-head">
+                        <span>identity.json</span>
+                        <span class="lights"><span></span><span></span><span></span></span>
+                    </div>
+                    <div class="hero-avatar"></div>
+                    <div class="hero-panel-rows">
+                        <div class="row"><span>nom</span><b>Nomena Christian</b></div>
+                        <div class="row"><span>rôle</span><b>Développeur Full Stack</b></div>
+                        <div class="row"><span>stack</span><b>Java · Vue.js · MySQL</b></div>
+                        <div class="row"><span>base</span><b>Antananarivo, MG</b></div>
+                        <div class="row"><span>statut</span><b class="status">● Disponible</b></div>
+                    </div>
                 </div>
-              </a>
-              <a href="https://linkedin.com/in/myah-ny-aintso-rakoto-andrianohavy-2933a9402" target="_blank"
-                class="contact-link">
-                <i class="bi bi-linkedin"></i>
-                <div class="contact-link-meta">
-                  <span class="contact-link-label">LinkedIn</span>
-                  <span class="contact-link-val">Myah Ny Aintso</span>
-                </div>
-              </a>
-              <a href="tel:+261341416636" class="contact-link">
-                <i class="bi bi-telephone"></i>
-                <div class="contact-link-meta">
-                  <span class="contact-link-label">Téléphone</span>
-                  <span class="contact-link-val">+261 34 14 166 36</span>
-                </div>
-              </a>
             </div>
-          </div>
-          <form id="contact-form" class="reveal">
-            <div class="form-group">
-              <label>Nom complet</label>
-              <input type="text" name="name" placeholder="Jean Dupont" />
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" name="email" placeholder="jean@exemple.com" />
-            </div>
-            <div class="form-group">
-              <label>Sujet</label>
-              <input type="text" name="sujet" placeholder="Proposition de collaboration" />
-            </div>
-            <div class="form-group">
-              <label>Message</label>
-              <textarea name="message" placeholder="Décrivez votre projet ou votre besoin..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-              <i class="bi bi-send"></i> Envoyer
-            </button>
-          </form>
+
+            <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+        </section>
+
+        <div class="container">
+            <div class="section-divider"></div>
         </div>
-      </section>
 
-      <!-- FOOTER -->
-      <footer>
-        <span>~/myah.dev</span>
-        <span>Antananarivo, Madagascar · 2025</span>
-      </footer>
+        <section class="section" id="about">
+            <div class="container about-grid">
+                <div class="about-card bracket reveal-el">
+                    <span class="bl"></span><span class="br"></span>
+                    <span class="file-tag">profile.card</span>
+                    <div class="about-photo-block">
+                        <span class="tick t1">01 / 05</span>
+                        <span class="tick t2">FULL STACK</span>
+                    </div>
+                    <div class="about-loc"><i class="bi bi-geo-alt"></i> Antananarivo, Madagascar</div>
+                </div>
+                <div class="about-text reveal-el">
+                    <span class="kicker">À propos</span>
+                    <h3>Étudiant en informatique, développeur par passion.</h3>
+                    <p>Je conçois des applications web complètes, <b>de la base de données à l'interface</b> — sans
+                        jamais sacrifier l'un pour l'autre. Mon terrain de jeu : moderniser des systèmes existants
+                        (GLPI, Dolibarr) et bâtir des outils de gestion sur mesure pour de vrais besoins métier.</p>
+                    <p>J'aime le code qui reste lisible six mois plus tard, les APIs qui ne cassent pas en production,
+                        et les interfaces qui ne font pas réfléchir l'utilisateur. Chaque projet est une occasion de
+                        resserrer cette exigence.</p>
+                    <div class="about-highlights">
+                        <div class="highlight-card"><span class="num">01</span><span class="t">Stage</span><span
+                                class="d">Développement d'entreprise</span></div>
+                        <div class="highlight-card"><span class="num">02</span><span class="t">Freelance</span><span
+                                class="d">Missions clients réelles</span></div>
+                        <div class="highlight-card"><span class="num">03</span><span class="t">Licence</span><span
+                                class="d">Informatique en cours</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <div class="container">
+            <div class="section-divider"></div>
+        </div>
+
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-head reveal-el">
+                    <div>
+                        <span class="kicker">Compétences</span>
+                        <h2 class="section-title">Stack technique</h2>
+                        <p class="section-sub">Les outils que j'utilise en production, pas une liste de mots-clés.</p>
+                    </div>
+                    <span class="section-tag">SEC.02 — STACK.YML</span>
+                </div>
+                <div class="skills-grid-new reveal-el">
+                    <!-- Langages -->
+                    <div class="skill-group">
+                        <div class="skill-group-header">
+                            <span class="name">
+                                <i class="bi bi-code-slash"></i>Langages
+                            </span>
+                            <span class="code">LG</span>
+                        </div>
+
+                        <div class="skill-rows">
+                            <div class="skill-row">
+                                <span class="label">HTML / CSS</span>
+                                <div class="bar"><i data-w="95"></i></div>
+                                <span class="pct">95%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">JavaScript</span>
+                                <div class="bar"><i data-w="90"></i></div>
+                                <span class="pct">90%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">TypeScript</span>
+                                <div class="bar"><i data-w="90"></i></div>
+                                <span class="pct">90%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">Java</span>
+                                <div class="bar"><i data-w="90"></i></div>
+                                <span class="pct">90%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">PHP</span>
+                                <div class="bar"><i data-w="80"></i></div>
+                                <span class="pct">80%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">Python</span>
+                                <div class="bar"><i data-w="60"></i></div>
+                                <span class="pct">60%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">C#</span>
+                                <div class="bar"><i data-w="50"></i></div>
+                                <span class="pct">50%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Frameworks -->
+                    <div class="skill-group">
+                        <div class="skill-group-header">
+                            <span class="name">
+                                <i class="bi bi-boxes"></i>Frameworks & Libraries
+                            </span>
+                            <span class="code">FW</span>
+                        </div>
+
+                        <div class="skill-rows">
+                            <div class="skill-row">
+                                <span class="label">Spring Boot</span>
+                                <div class="bar"><i data-w="90"></i></div>
+                                <span class="pct">90%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">Vue.js</span>
+                                <div class="bar"><i data-w="80"></i></div>
+                                <span class="pct">80%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">React</span>
+                                <div class="bar"><i data-w="70"></i></div>
+                                <span class="pct">70%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">Flight PHP</span>
+                                <div class="bar"><i data-w="75"></i></div>
+                                <span class="pct">75%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">Laravel</span>
+                                <div class="bar"><i data-w="70"></i></div>
+                                <span class="pct">70%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">Symphony</span>
+                                <div class="bar"><i data-w="70"></i></div>
+                                <span class="pct">70%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">Bootstrap</span>
+                                <div class="bar"><i data-w="80"></i></div>
+                                <span class="pct">80%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">.NET</span>
+                                <div class="bar"><i data-w="50"></i></div>
+                                <span class="pct">50%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-group-header">
+                            <span class="name"><i class="bi bi-database"></i>Bases de données</span>
+                            <span class="code">DB</span>
+                        </div>
+                        <div class="skill-rows">
+                            <div class="skill-row">
+                                <span class="label">PostgreSQL</span>
+                                <div class="bar"><i data-w="85"></i></div>
+                                <span class="pct">85%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">MySQL</span>
+                                <div class="bar"><i data-w="80"></i></div>
+                                <span class="pct">80%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">MariaDB</span>
+                                <div class="bar"><i data-w="80"></i></div>
+                                <span class="pct">80%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">SQL Server</span>
+                                <div class="bar"><i data-w="65"></i></div>
+                                <span class="pct">65%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">SQLite</span>
+                                <div class="bar"><i data-w="70"></i></div>
+                                <span class="pct">70%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">Oracle</span>
+                                <div class="bar"><i data-w="40"></i></div>
+                                <span class="pct">40%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-group-header">
+                            <span class="name"><i class="bi bi-tools"></i>Outils</span>
+                            <span class="code">OPS</span>
+                        </div>
+                        <div class="skill-rows">
+                            <div class="skill-row">
+                                <span class="label">Git / GitHub</span>
+                                <div class="bar"><i data-w="90"></i></div>
+                                <span class="pct">90%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">Docker</span>
+                                <div class="bar"><i data-w="70"></i></div>
+                                <span class="pct">70%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">Postman</span>
+                                <div class="bar"><i data-w="85"></i></div>
+                                <span class="pct">85%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">Linux</span>
+                                <div class="bar"><i data-w="72"></i></div>
+                                <span class="pct">72%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">VS Code</span>
+                                <div class="bar"><i data-w="95"></i></div>
+                                <span class="pct">95%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-group-header">
+                            <span class="name">
+                                <i class="bi bi-cloud-upload"></i>Cloud & Déploiement
+                            </span>
+                            <span class="code">CLD</span>
+                        </div>
+
+                        <div class="skill-rows">
+                            <div class="skill-row">
+                                <span class="label">Docker</span>
+                                <div class="bar"><i data-w="70"></i></div>
+                                <span class="pct">70%</span>
+                            </div>
+
+                            <div class="skill-row">
+                                <span class="label">Vercel</span>
+                                <div class="bar"><i data-w="80"></i></div>
+                                <span class="pct">80%</span>
+                            </div>
+
+                            <div class="skill-row">
+                                <span class="label">Render</span>
+                                <div class="bar"><i data-w="65"></i></div>
+                                <span class="pct">65%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">Firebase</span>
+                                <div class="bar"><i data-w="50"></i></div>
+                                <span class="pct">50%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- API -->
+                    <div class="skill-group">
+                        <div class="skill-group-header">
+                            <span class="name">
+                                <i class="bi bi-diagram-3"></i>APIs & Architecture
+                            </span>
+                            <span class="code">API</span>
+                        </div>
+
+                        <div class="skill-rows">
+                            <div class="skill-row">
+                                <span class="label">REST API</span>
+                                <div class="bar"><i data-w="95"></i></div>
+                                <span class="pct">95%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">MVC</span>
+                                <div class="bar"><i data-w="95"></i></div>
+                                <span class="pct">95%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="label">JWT</span>
+                                <div class="bar"><i data-w="70"></i></div>
+                                <span class="pct">70%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="section-divider"></div>
+        </div>
+
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-head reveal-el">
+                    <div>
+                        <span class="kicker">Projets</span>
+                        <h2 class="section-title">Réalisations récentes</h2>
+                        <p class="section-sub">Des systèmes réels, pas des maquettes — chacun résout un problème précis.
+                        </p>
+                    </div>
+                    <span class="section-tag">SEC.03 — PROJECTS/</span>
+                </div>
+                <div class="carousel-wrap reveal-el">
+                    <div class="carousel-stage" id="carouselStage">
+                        <div class="carousel-track" id="carouselTrack"></div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-arrow" id="prevBtn" aria-label="Précédent"><i
+                                class="bi bi-arrow-left"></i></button>
+                        <div class="carousel-dashes" id="carouselDashes"></div>
+                        <span class="carousel-index" id="carouselIndex">01 / 05</span>
+                        <button class="carousel-arrow" id="nextBtn" aria-label="Suivant"><i
+                                class="bi bi-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="section-divider"></div>
+        </div>
+
+        <section class="section" id="services">
+            <div class="container">
+                <div class="section-head reveal-el">
+                    <div>
+                        <span class="kicker">Services</span>
+                        <h2 class="section-title">Ce que je peux prendre en charge</h2>
+                    </div>
+                    <span class="section-tag">SEC.04 — CAPACITY</span>
+                </div>
+                <div class="services-grid-new reveal-el">
+                    <div class="service-card-new"><span class="mod-code">MOD.01</span><i class="bi bi-globe"></i>
+                        <h3>Développement web</h3>
+                        <p>Sites et applications responsives, rapides, pensés pour durer.</p>
+                    </div>
+                    <div class="service-card-new"><span class="mod-code">MOD.02</span><i class="bi bi-window-plus"></i>
+                        <h3>Applications de gestion</h3>
+                        <p>Outils métier sur mesure : paie, stock, suivi, tableaux de bord.</p>
+                    </div>
+                    <div class="service-card-new"><span class="mod-code">MOD.03</span><i class="bi bi-hdd-network"></i>
+                        <h3>API REST</h3>
+                        <p>Endpoints documentés, sécurisés, prêts à s'intégrer ailleurs.</p>
+                    </div>
+                    <div class="service-card-new"><span class="mod-code">MOD.04</span><i class="bi bi-gear"></i>
+                        <h3>Maintenance & évolution</h3>
+                        <p>Correction, refonte progressive, montée en charge sans casse.</p>
+                    </div>
+                    <div class="service-card-new"><span class="mod-code">MOD.05</span><i class="bi bi-cloud-upload"></i>
+                        <h3>Déploiement</h3>
+                        <p>Mise en production, conteneurisation, environnements propres.</p>
+                    </div>
+                    <div class="service-card-new"><span class="mod-code">MOD.06</span><i class="bi bi-chat-dots"></i>
+                        <h3>Conseil technique</h3>
+                        <p>Choix d'architecture, revue de code, cadrage de projet.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="section-divider"></div>
+        </div>
+
+        <section class="section" id="timeline">
+            <div class="container">
+                <div class="section-head reveal-el">
+                    <div>
+                        <span class="kicker">Parcours</span>
+                        <h2 class="section-title">Historique</h2>
+                    </div>
+                    <span class="section-tag">SEC.05 — LOG --oneline</span>
+                </div>
+                <div class="log-list reveal-el" id="logList"></div>
+            </div>
+        </section>
+
+        <div class="stats-section reveal-el">
+            <div class="container">
+                <div class="stats-grid-new" id="statsGrid"></div>
+            </div>
+        </div>
+
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="section-head reveal-el">
+                    <div>
+                        <span class="kicker">Contact</span>
+                        <h2 class="section-title">Parlons de votre projet</h2>
+                    </div>
+                    <span class="section-tag">SEC.06 — CONNECT</span>
+                </div>
+                <div class="contact-grid reveal-el">
+                    <form class="contact-form-new" id="contactForm">
+                        <div class="form-group"><label>Nom</label><input type="text" id="name" required
+                                placeholder="Votre nom"></div>
+                        <div class="form-group"><label>Email</label><input type="email" id="email" required
+                                placeholder="vous@email.com"></div>
+                        <div class="form-group"><label>Sujet</label><input type="text" id="subject" required
+                                placeholder="Objet du message"></div>
+                        <div class="form-group"><label>Message</label><textarea id="message" rows="4" required
+                                placeholder="Décrivez votre projet en quelques lignes"></textarea></div>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Envoyer le
+                            message</button>
+                    </form>
+                    <div class="contact-links-new">
+                        <div class="avail-card"><i class="bi bi-info-circle"></i> Disponible pour missions freelance et
+                            opportunités de stage à partir de juillet 2026.</div>
+                        <a href="https://github.com/Noms-001" target="_blank" class="contact-link-card"><i
+                                class="bi bi-github"></i> github.com/Noms-001</a>
+                        <a href="https://linkedin.com/in/nomena-christian-51665a422" target="_blank"
+                            class="contact-link-card"><i class="bi bi-linkedin"></i>
+                            linkedin.com/in/nomena-christian-51665a422</a>
+                        <a href="mailto:nomenachristian04@gmail.com" class="contact-link-card"><i
+                                class="bi bi-envelope"></i>
+                            nomenachristian04@gmail.com</a>
+                        <a href="tel:+261344146001" class="contact-link-card"><i class="bi bi-telephone"></i> +261 34 41
+                            460 01</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> 
-  <script>
-    emailjs.init("wFoMwX4Su1rBZYIHz");
 
-    // ── Typewriter ──
-    const phrases = [
-      'Développeur Full-Stack',
-      'Passionné Open Source',
-      'Architecte de solutions',
-    ];
-    let pi = 0, ci = 0, deleting = false;
-    const el = document.getElementById('typed');
-    function type() {
-      const phrase = phrases[pi];
-      if (!deleting) {
-        el.textContent = phrase.slice(0, ++ci);
-        if (ci === phrase.length) { deleting = true; setTimeout(type, 2200); return; }
-      } else {
-        el.textContent = phrase.slice(0, --ci);
-        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
-      }
-      setTimeout(type, deleting ? 40 : 75);
-    }
-    type();
+    <footer class="footer">
+        <div class="container">
+            <span class="footer-brand">NC/ — Nomena Christian, 2026</span>
+            <div class="footer-nav"><a href="#home">Accueil</a><a href="#about">À propos</a><a
+                    href="#projects">Projets</a><a href="#contact">Contact</a></div>
+            <div class="footer-social">
+                <a href="https://github.com/Noms-001" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://linkedin.com/in/nomena-christian-51665a422 target="_blank" aria-label="LinkedIn"><i
+                        class="bi bi-linkedin"></i></a>
+                <a href="mailto:nomenachristian04@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
 
-    // ── Scroll reveal ──
-    const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    reveals.forEach(r => obs.observe(r));
+    <button class="back-to-top" id="backToTop" aria-label="Retour en haut"><i class="bi bi-arrow-up"></i></button>
 
-    // ── Active nav ──
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.sidebar-nav a');
-    const onScroll = () => {
-      let cur = '';
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 120) cur = s.id;
-      });
-      navLinks.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
-      });
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    document.getElementById("contact-form").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const form = this;
-
-      // 1️⃣ Envoi vers toi (admin)
-      const adminEmail = emailjs.send("gmail", "po_reply", {
-        name: form.name.value,
-        email: form.email.value,
-        sujet: form.sujet.value,
-        message: form.message.value
-      });
-
-      // 2️⃣ Auto reply vers utilisateur
-      const autoReply = emailjs.send("gmail", "reply", {
-        name: form.name.value,
-        email: form.email.value
-      });
-
-      Promise.all([adminEmail, autoReply])
-        .then(() => {
-          alert("Message envoyé avec succès !");
-          form.reset();
-        })
-        .catch((error) => {
-          console.error(error);
-          alert("Erreur lors de l'envoi !");
-        });
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
