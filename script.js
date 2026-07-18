@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 desc: "Refonte de l'UI de GLPI 11 avec Vue.js pour un flux de tickets plus rapide et plus clair avec une couche API REST.",
                 tags: ["Vue.js", "Javascript", "SQLite", "REST API"],
                 glyph: "G",
-                image: 'logo.png',
+                image: 'images/projet-glpi-front.png',
                 path: "~/projects/glpi-vue",
                 github: "https://github.com/Noms-001/glpi-vue",
                 demo: ""
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 desc: "Couche API REST pour Dolibarr ERP/CRM, pensée pour connecter des outils tiers sans friction.",
                 tags: ["Vue.js", "Typescript", "SQLite", "REST API"],
                 glyph: "D",
-                image: 'logo.png',
+                image: 'images/projet-dolibarr-front.png',
                 path: "~/projects/dolibarr-vue",
                 github: "https://github.com/Noms-001/dolibarr-vue",
                 demo: ""
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 desc: "Développement d'une API backend pour GLPI 11 avec architecture MVC, gestion des utilisateurs, authentification et intégration avec la base de données.",
                 tags: ["Java", "Spring Boot (MVC)", "SQLite"],
                 glyph: "S",
-                image: 'logo.png',
+                image: 'images/projet-glpi.png',
                 path: "~/projects/glpi-back",
                 github: "https://github.com/Noms-001/glpi-back",
                 demo: ""
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 desc: "Développement d'un backend REST en architecture MVC pour Dolibarr 23 avec gestion des données, logique métier et accès à la base de données.",
                 tags: ["Java", "Spring Boot (MVC)", "SQLite"],
                 glyph: "A",
-                image: 'logo.png',
+                image: 'images/projet-dolibarr.png',
                 path: "~/projects/dolibarr-back",
                 github: "https://github.com/Noms-001/dolibarr-back",
                 demo: ""
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 desc: "Conception et développement d'une application de gestion des recrutements intégrant la publication des offres, le suivi des candidatures, la gestion des dossiers des candidats et des entretiens.",
                 tags: ["Java", "Spring Boot (MVC)", "SQLite"],
                 glyph: "R",
-                image: 'logo.png',
+                image: 'images/projet-recrutement.png',
                 path: "~/projects/gestion-recrutement",
                 github: "https://github.com/Noms-001/Gestion_Recrutement",
                 demo: ""
@@ -60,10 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 desc: "Identité visuelle sur mesure, animations construites à la main, zéro dépendance superflue.",
                 tags: ["HTML5", "CSS3", "JavaScript"],
                 glyph: "P",
-                image: 'logo.png',
+                image: 'images/projet-portfolio.png',
                 path: "~/projects/portfolio",
-                github: "https://github.com/Noms-001/portfolio",
-                demo: ""
+                github: "https://github.com/Noms-001/portfolio"
             }
         ];
         const logData = [
@@ -209,6 +208,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (ok) { alert('Message envoyé avec succès !'); e.target.reset(); }
         });
 
+        const demoButton = (p) => {
+            return p.demo ? `
+                            <a href="${p.demo}" target="_blank" class="primary">
+                                <i class="bi bi-play-circle"></i> Démo
+                            </a>
+                        ` : `
+                            <a href="#" class="primary disabled">
+                                <i class="bi bi-hourglass"></i> Bientôt
+                            </a>
+                        `
+        }
+
         /* ============ COVERFLOW CAROUSEL ============ */
         const track = document.getElementById('carouselTrack');
         track.innerHTML = projects.map((p, i) => `
@@ -222,20 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="${p.github}" target="_blank">
                         <i class="bi bi-github"></i> Code
                     </a>
-
-                    ${p.demo
-                ? `
-                        <a href="${p.demo}" target="_blank" class="primary">
-                            <i class="bi bi-play-circle"></i> Démo
-                        </a>
-                        `
-                :
-                `
-                        <a href="#" class="primary disabled">
-                            <i class="bi bi-hourglass"></i> Bientôt
-                        </a>
-                        `
-            }
+                    ${p.glyph !== 'P' ? demoButton(p) : ''}
                 </div>
             </div>
         </div>`).join('');
